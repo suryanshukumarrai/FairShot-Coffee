@@ -1,13 +1,13 @@
 package com.coffeeShop.Coffee.Shop.model;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -33,6 +33,11 @@ public class Order {
     // Emergency escalation
     @Builder.Default
     private boolean isUrgent = false;
+
+    // Virtual time fields for simulation mode (minutes from simulation start)
+    private Double virtualArrivalMinutes;
+    private Double virtualStartMinutes;
+    private Double virtualWaitMinutes;
 
     public static final int MAX_WAIT_MINUTES = 10;
     public static final int COMPLAINT_THRESHOLD_MINUTES = 8;

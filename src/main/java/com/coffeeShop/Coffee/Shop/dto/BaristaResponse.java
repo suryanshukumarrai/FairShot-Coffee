@@ -1,9 +1,9 @@
 package com.coffeeShop.Coffee.Shop.dto;
 
-import lombok.Data;
-
 import java.time.Instant;
 import java.util.UUID;
+
+import lombok.Data;
 
 @Data
 public class BaristaResponse {

@@ -1,19 +1,20 @@
 package com.coffeeShop.Coffee.Shop.util;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.coffeeShop.Coffee.Shop.dto.BaristaResponse;
 import com.coffeeShop.Coffee.Shop.dto.OrderRequest;
 import com.coffeeShop.Coffee.Shop.dto.OrderResponse;
 import com.coffeeShop.Coffee.Shop.model.Barista;
 import com.coffeeShop.Coffee.Shop.model.Order;
 import com.coffeeShop.Coffee.Shop.service.PriorityScoreService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Mapper for converting between domain models and DTOs.

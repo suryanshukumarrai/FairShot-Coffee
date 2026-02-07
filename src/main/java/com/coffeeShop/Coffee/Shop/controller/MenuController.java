@@ -1,17 +1,19 @@
 package com.coffeeShop.Coffee.Shop.controller;
 
-import com.coffeeShop.Coffee.Shop.dto.MenuItemResponse;
-import com.coffeeShop.Coffee.Shop.model.DrinkType;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.coffeeShop.Coffee.Shop.dto.MenuItemResponse;
+import com.coffeeShop.Coffee.Shop.model.DrinkType;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * REST controller for menu operations.
