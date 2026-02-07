@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-white antialiased;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-secondary rounded-lg p-6 shadow-xl border border-bg-tertiary;
+  }
+
+  .btn-primary {
+    @apply bg-accent-light text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-amber-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-tertiary text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition-colors;
+  }
+
+  .status-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+  }
+}
