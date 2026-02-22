@@ -2,10 +2,13 @@
 
 A production-ready coffee shop queue management system featuring intelligent order prioritization, real-time barista assignment, and comprehensive analytics. Built with Spring Boot and React.
 
+**🌐 [LIVE DEMO](https://fairshot-coffee.onrender.com)** - Visit the application now!
+
 ![Java](https://img.shields.io/badge/Java-21-orange?logo=java)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.2-brightgreen?logo=springboot)
 ![React](https://img.shields.io/badge/React-18-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Deployed](https://img.shields.io/badge/Deployed%20on-Render-46E3B7?logo=render)
 
 ## 🌟 Features
 
@@ -124,7 +127,19 @@ coffee-shop-frontend/src/
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Try the Live Demo
+**No setup required!** Visit the application at: **[https://fairshot-coffee.onrender.com](https://fairshot-coffee.onrender.com)**
+
+Explore all features:
+- 👤 Place orders via [Customer Portal](https://fairshot-coffee.onrender.com/order)
+- ☕ Monitor via [Barista Dashboard](https://fairshot-coffee.onrender.com/barista)
+- 📊 Analyze with [Manager Dashboard](https://fairshot-coffee.onrender.com/manager)
+- 🎮 Run [Simulations](https://fairshot-coffee.onrender.com/simulation)
+- 📺 View [Public Queue](https://fairshot-coffee.onrender.com/public-queue)
+
+### Local Development
+
+Or clone and run locally:
 ```bash
 git clone https://github.com/suryanshukumarrai/FairShot-Coffee.git
 cd FairShot-Coffee
@@ -412,28 +427,38 @@ Orders waiting ≥8 minutes automatically move to front of queue regardless of o
 
 ## 🧪 Testing the System
 
-### Quick Test Flow
+### Try the Live Demo
+**Visit:** **[https://fairshot-coffee.onrender.com](https://fairshot-coffee.onrender.com)**
+
+No setup required - test all features in real-time!
+
+### Quick Test Flow (Local Development)
 
 1. **Start Both Servers** (Backend: 8080, Frontend: 5173)
 
 2. **Place Orders via Customer Portal**:
-   - Go to http://localhost:5173/order
+   - Live: https://fairshot-coffee.onrender.com/order
+   - Local: http://localhost:5173/order
    - Select drinks and place multiple orders
 
 3. **Monitor Barista Dashboard**:
-   - http://localhost:5173/barista
+   - Live: https://fairshot-coffee.onrender.com/barista
+   - Local: http://localhost:5173/barista
    - Watch auto-assignment and preparation
 
 4. **Check Manager Analytics**:
-   - http://localhost:5173/manager
+   - Live: https://fairshot-coffee.onrender.com/manager
+   - Local: http://localhost:5173/manager
    - View real-time metrics and utilization
 
 5. **Run Simulation**:
-   - http://localhost:5173/simulation
+   - Live: https://fairshot-coffee.onrender.com/simulation
+   - Local: http://localhost:5173/simulation
    - Test with 100/150/200 orders
 
 6. **View Public Queue**:
-   - http://localhost:5173/queue
+   - Live: https://fairshot-coffee.onrender.com/public-queue
+   - Local: http://localhost:5173/queue
    - See live queue status
 
 ### API Testing with cURL
@@ -563,7 +588,54 @@ public class WebConfig implements WebMvcConfigurer {
 
 ## 🚀 Deployment
 
-### Backend (Spring Boot)
+### Live on Render
+The application is deployed and live at **[https://fairshot-coffee.onrender.com](https://fairshot-coffee.onrender.com)** on Render.
+
+**Deployment Details:**
+- **Platform:** Render (Free Tier)
+- **Backend:** Spring Boot on Java 21 (Port 8080)
+- **Frontend:** React + Vite (Served as static files)
+- **Architecture:** Single Docker container with multi-stage build
+- **Auto-Deploy:** Enabled on main branch pushes
+
+### Local Deployment
+
+#### Backend (Spring Boot)
+```bash
+# Package as JAR
+./mvnw clean package
+
+# Run JAR locally
+java -Xms128m -Xmx384m -jar target/Coffee-Shop-0.0.1-SNAPSHOT.jar
+```
+
+#### Frontend (React)
+```bash
+cd coffee-shop-frontend
+
+# Build production bundle
+npm run build
+
+# Serve with any static server
+npx serve -s dist -l 3000
+```
+
+### Deployment Configuration
+- **Docker Image:** `eclipse-temurin:21-jre-alpine` + Node.js 20
+- **Memory Limits:** `-Xms128m -Xmx384m` (optimized for 512MB free tier)
+- **Health Check:** `/actuator/health` endpoint
+- **Logging:** Production-optimized (INFO level)
+- **CORS:** Configured for `https://*.onrender.com`
+
+### Platform-Specific Information
+- **Render:** Auto-builds from Dockerfile, includes both frontend and backend
+- **Environment Variables:** `PORT` (auto-set by Render)
+- **Logs:** Accessible via Render dashboard
+- **Auto-Restart:** On health check failures
+
+---
+
+### Backend (Spring Boot) - OLD
 ```bash
 # Package as JAR
 ./mvnw clean package
@@ -572,14 +644,7 @@ public class WebConfig implements WebMvcConfigurer {
 java -jar target/Coffee-Shop-0.0.1-SNAPSHOT.jar
 ```
 
-### Frontend (React)
-```bash
-# Build production bundle
-npm run build
-
-# Serve with any static server
-npx serve -s dist -l 3000
-```
+### Frontend (React) - OLD
 
 ## 📝 License
 
