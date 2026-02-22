@@ -6,12 +6,16 @@ WORKDIR /app/coffee-shop-frontend
 # Copy frontend package files
 COPY coffee-shop-frontend/package*.json ./
 
-# Install dependencies and build
+# Install dependencies
 RUN npm ci
+
+# Copy source code
 COPY coffee-shop-frontend/src ./src
 COPY coffee-shop-frontend/index.html ./
 COPY coffee-shop-frontend/*.ts* ./
 COPY coffee-shop-frontend/*.config.* ./
+
+# Build frontend (skip tsc type checking, vite will handle it)
 RUN npm run build
 
 # Stage 2: Build Java backend and combine with frontend
