@@ -18,7 +18,7 @@ COPY coffee-shop-frontend/*.config.* ./
 # Build frontend (skip tsc type checking, vite will handle it)
 RUN npm run build
 
-# Stage 2: Build Java backend and combine with frontend
+# Stage 2: Build Java backend with frontend files included
 FROM maven:3.9-eclipse-temurin-21-alpine AS backend-builder
 WORKDIR /app
 
@@ -31,7 +31,11 @@ COPY .mvn .mvn
 # Copy source code
 COPY src ./src
 
-# Build backend JAR
+# Copy built React frontend into backend's static resources
+# Spring Boot will serve these as static files and include in the JAR
+COPY --from=frontend-builder /app/coffee-shop-frontend/dist /app/src/main/resources/public
+
+# Build backend JAR (includes frontend static files)
 RUN ./mvnw clean package -DskipTests
 
 # Stage 3: Create runtime image
@@ -41,12 +45,8 @@ WORKDIR /app
 # Install curl for health checks
 RUN apk add --no-cache curl
 
-# Copy built JAR from backend-builder
+# Copy built JAR from backend-builder (includes frontend files)
 COPY --from=backend-builder /app/target/Coffee-Shop-*.jar app.jar
-
-# Copy built React frontend to backend's static resources
-RUN mkdir -p /app/public
-COPY --from=frontend-builder /app/coffee-shop-frontend/dist /app/public
 
 # Expose port 8080 (internal) - Render will map to 10000
 EXPOSE 8080
