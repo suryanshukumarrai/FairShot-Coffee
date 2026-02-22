@@ -3,7 +3,6 @@ package com.coffeeShop.Coffee.Shop.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * Configures:
  * 1. CORS for frontend integration (development and production)
  * 2. Static resource serving (React frontend built files)
- * 3. SPA routing (forward non-API routes to index.html for client-side routing)
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -35,18 +33,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Serve React static files from classpath (built frontend dist)
+        // Cache static assets for 1 hour
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/public/")
-                .setCachePeriod(3600); // Cache static files for 1 hour
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        // SPA routing: forward all non-API, non-static routes to index.html
-        // This allows React Router to handle the routing on the client side
-        registry.addViewController("/{x:[\\w\\-]+}")
-                .setViewName("forward:/index.html");
-        registry.addViewController("/{x:^(?!api$).*$}/**/{y:[\\w\\-]+}")
-                .setViewName("forward:/index.html");
+                .setCachePeriod(3600);
     }
 }
