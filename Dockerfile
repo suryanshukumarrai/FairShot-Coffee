@@ -9,7 +9,7 @@ COPY coffee-shop-frontend/package*.json ./
 # Install dependencies and build
 RUN npm ci
 COPY coffee-shop-frontend/src ./src
-COPY coffee-shop-frontend/public ./public
+COPY coffee-shop-frontend/index.html ./
 COPY coffee-shop-frontend/*.ts* ./
 COPY coffee-shop-frontend/*.config.* ./
 RUN npm run build
