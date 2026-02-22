@@ -1,7 +1,10 @@
 import axios from 'axios'
 import type { Order, Barista, OrderRequest, ManagerMetrics, SimulationRequest, SimulationResponse, MenuItem } from '../types'
 
-const API_BASE = 'http://localhost:8080/api'
+// Use relative URL so it works in both development and production
+// In dev: http://localhost:8080/api
+// In prod: https://your-app.onrender.com/api
+const API_BASE = '/api'
 
 const api = axios.create({
     baseURL: API_BASE,

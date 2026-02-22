@@ -1,0 +1,38 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# IDE files
+.idea
+.vscode
+*.iml
+*.iws
+*.ipr
+.DS_Store
+
+# Build outputs
+target/
+coffee-shop-frontend/dist/
+coffee-shop-frontend/node_modules/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Documentation
+README.md
+HELP.md
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Node modules cache
+npm-debug.log
+yarn-error.log
+package-lock.json.bak

@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: fairshot-coffee
+    runtime: docker
+    plan: free
+    region: oregon
+    
+    # Build configuration
+    dockerfilePath: ./Dockerfile
+    
+    # Port handling
+    envVars:
+      - key: PORT
+        value: 8080
+    
+    # Auto-deploy on push to main branch
+    branch: main
+    autoDeploy: true
+    
+    # Health check
+    healthCheckPath: /actuator/health
+    
+    # Build settings
+    buildCommand: "docker build -t fairshot-coffee:latest ."
+    startCommand: "java -jar app.jar"
